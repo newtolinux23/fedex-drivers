@@ -159,11 +159,13 @@
         /* Footer styling */
         footer {
             margin-top: 40px;
-            padding-bottom: 20px;
+            padding-bottom: 30px;
             animation: fadeIn 1s ease-out 2s forwards;
             opacity: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
         }
 
         .texas-flag {
@@ -171,6 +173,18 @@
             height: 30px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             border-radius: 2px;
+        }
+
+        .facility-address {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .facility-address strong {
+            color: #4D148C;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -228,7 +242,7 @@
         </a>
     </div>
 
-    <!-- Footer containing the Texas flag -->
+    <!-- Footer containing the Texas flag and Address -->
     <footer>
         <svg class="texas-flag" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
             <rect width="30" height="10" fill="#ffffff"/>
@@ -236,6 +250,11 @@
             <rect width="10" height="20" fill="#002868"/>
             <path d="M5 6.5 L6.1 9.6 L9.5 9.6 L6.7 11.5 L7.8 14.6 L5 12.6 L2.2 14.6 L3.3 11.5 L0.5 9.6 L3.9 9.6 Z" fill="#ffffff"/>
         </svg>
+        <div class="facility-address">
+            <strong>FedEx Ground</strong><br>
+            4901 Village Creek Rd<br>
+            Fort Worth, TX 76119
+        </div>
     </footer>
 
 </body>
