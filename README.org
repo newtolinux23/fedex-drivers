@@ -1,0 +1,37 @@
+#+TITLE: Driver Directory & Uniform Roster
+#+AUTHOR: Rob Alicea
+#+DESCRIPTION: Team contact information and uniform sizes for 4901 Village Creek Rd.
+​Driver Contact Directory
+​| Driver Name  | Route | Phone Number | Email Address                 |
+|--------------+-------+--------------+-------------------------------|
+| Antonio J.   |   135 | 314-465-1499 | Tonyejackson04@gmail.com      |
+| Cayton M.    |   127 | 817-521-4570 | Cryptocayton@gmail.com        |
+| Datavious S. |  Bulk | 682-287-7169 | dstrib99@gmail.com            |
+| Davion O.    |   TBD | 817-718-0259 | Oliverdavion@me.com           |
+| Elvis G.R.   |   155 | 210-897-1929 | Elvisguanipa529@gmail.com     |
+| Jamal S.     |   123 | 347-527-0069 | Malinvestments27@gmail.com    |
+| Jesus P.     |   139 | 817-875-0747 | Pasos_j@yahoo.com             |
+| Jose G.      |   130 | 682-234-1522 | Garcia_turco_jose@yahoo.com   |
+| Joshua B.    |   TBD | 662-435-4826 | jcboyd97@gmail.com            |
+| Karee        |   TBD | Pending      | Pending                       |
+| Mark F.      |   126 | 817-449-4466 | markanttony92@gmail.com       |
+| Noel R.      |   TBD | 682-552-9523 | Noe.r2003@yahoo.com           |
+| Quinton J.   | Hosp. | 817-730-8910 | yungactionjack@gmail.com      |
+| Ryan H.      |   TBD | 682-772-0589 | Wurker.man.247@gmail.com      |
+​Driver Uniform Sizes
+​| Driver Name  | Route | Shirt Size | Pants Size | Vest Size |
+|--------------+-------+------------+------------+-----------|
+| Antonio J.   |   135 | S          |         32 | M         |
+| Cayton M.    |   127 | L          |         36 | L         |
+| Datavious S. |  Bulk | Pending    |    Pending | Pending   |
+| Davion O.    |   TBD | M          |         34 | M         |
+| Elvis G.R.   |   155 | M          |        N/A | M         |
+| Jamal S.     |   123 | L          |         36 | N/A       |
+| Jesus P.     |   139 | M          |         34 | M         |
+| Jose G.      |   130 | L          |         38 | XL        |
+| Joshua B.    |   TBD | XL         |         38 | 2XL       |
+| Karee        |   TBD | Pending    |    Pending | Pending   |
+| Mark F.      |   126 | L          |         36 | L         |
+| Noel R.      |   TBD | XL         |         38 | XL        |
+| Quinton J.   | Hosp. | M          |      29x32 | N/A       |
+| Ryan H.      |   TBD | M          |         30 | M         |
