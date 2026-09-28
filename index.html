@@ -3,492 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Directory</title>
+    <title>Driver Directory & Uniform Roster</title>
+    
+    <!-- Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Load Phosphor Icons for UI elements -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        fedex: {
+                            purple: '#4D148C',
+                            orange: '#FF6200',
+                            lightPurple: '#F4F0F9'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-            margin: 0;
-            overflow-x: hidden;
-            min-height: 100vh;
+        /* Custom scrollbar for horizontal table scrolling */
+        ::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
         }
-
-        /* Animations */
-        @keyframes driveIn {
-            0% { transform: translateX(-150px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 4px;
         }
-
-        @keyframes fadeInUp {
-            0% { transform: translateY(20px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
         }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .profile {
-            text-align: center;
-            margin-bottom: 25px;
-            width: 100%;
-            max-width: 450px;
-        }
-        
-        .truck-container {
-            margin-bottom: 10px;
-        }
-        
-        .truck-icon {
-            width: 100px;
-            height: auto;
-            animation: driveIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        /* FedEx CSS Logo */
-        .fedex-logo {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 42px;
-            font-weight: 900;
-            letter-spacing: -2.5px;
-            margin: 5px 0;
-            animation: fadeIn 1s ease-out 0.2s forwards;
-            opacity: 0;
-        }
-        .fedex-fed { color: #4D148C; }
-        .fedex-ex { color: #FF6600; }
-
-        .profile h1 {
-            font-size: 20px;
-            color: #4D148C;
-            margin-bottom: 5px;
-            margin-top: 5px;
-            animation: fadeIn 1s ease-out 0.3s forwards;
-            opacity: 0;
-        }
-
-        .profile p.subtitle {
-            color: #FF6600;
-            font-size: 15px;
-            font-weight: 600;
-            margin-top: 0;
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease-out 0.5s forwards;
-            opacity: 0;
-        }
-
-        .quote-box {
-            background-color: #ffffff;
-            border-left: 4px solid #FF6600;
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-            margin-bottom: 30px;
-            text-align: left;
-            animation: fadeIn 1.2s ease-out 0.7s forwards;
-            opacity: 0;
-        }
-
-        .quote-text {
-            color: #444;
-            font-size: 14.5px;
-            font-style: italic;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        .links-container {
-            width: 100%;
-            max-width: 450px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex-grow: 1;
-        }
-
-        /* Driver Card Styling */
-        .driver-card {
-            background-color: #ffffff;
-            border-top: 4px solid #4D148C;
-            border-radius: 8px;
-            padding: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            opacity: 0;
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-
-        .driver-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            border-bottom: 1px solid #f0f0f0;
-            padding-bottom: 8px;
-        }
-
-        .driver-name {
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .driver-route {
-            font-size: 14px;
-            font-weight: 600;
-            color: #FF6600;
-            background-color: #fff0e5;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-
-        .driver-actions {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .action-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            background-color: #ffffff;
-            color: #4D148C;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-            border: 2px solid #4D148C;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .action-btn:hover, .action-btn:active {
-            background-color: #4D148C;
-            color: #ffffff;
-        }
-
-        /* Hardcoded Description Styling */
-        .driver-notes {
-            background-color: #f9f9fc;
-            border-left: 4px solid #4D148C;
-            border-radius: 4px 8px 8px 4px;
-            padding: 12px 15px;
-            font-size: 14px;
-            color: #444;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        .driver-notes strong {
-            color: #333;
-        }
-
-        /* Staggered animation delays for 13 cards */
-        .driver-card:nth-child(1) { animation-delay: 0.8s; }
-        .driver-card:nth-child(2) { animation-delay: 0.9s; }
-        .driver-card:nth-child(3) { animation-delay: 1.0s; }
-        .driver-card:nth-child(4) { animation-delay: 1.1s; }
-        .driver-card:nth-child(5) { animation-delay: 1.2s; }
-        .driver-card:nth-child(6) { animation-delay: 1.3s; }
-        .driver-card:nth-child(7) { animation-delay: 1.4s; }
-        .driver-card:nth-child(8) { animation-delay: 1.5s; }
-        .driver-card:nth-child(9) { animation-delay: 1.6s; }
-        .driver-card:nth-child(10) { animation-delay: 1.7s; }
-        .driver-card:nth-child(11) { animation-delay: 1.8s; }
-        .driver-card:nth-child(12) { animation-delay: 1.9s; }
-        .driver-card:nth-child(13) { animation-delay: 2.0s; }
-
-        footer {
-            margin-top: 40px;
-            padding-bottom: 30px;
-            animation: fadeIn 1s ease-out 2.5s forwards;
-            opacity: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .texas-flag {
-            width: 45px;
-            height: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 2px;
-        }
-
-        .facility-address {
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .facility-address strong {
-            color: #4D148C;
-            font-size: 14px;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-    <div class="profile">
-        <div class="truck-container">
-            <svg class="truck-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 6C1 4.89543 1.89543 4 3 4H15C16.1046 4 17 4.89543 17 6V17H1V6Z" fill="#4D148C"/>
-                <path d="M17 9H20.5L23.5 13V17H17V9Z" fill="#4D148C"/>
-                <path d="M18 10H20L22 13H18V10Z" fill="#f4f4f9"/>
-                <circle cx="5.5" cy="18.5" r="2.5" fill="#FF6600"/>
-                <circle cx="19.5" cy="18.5" r="2.5" fill="#FF6600"/>
-                <path d="M1 21H23" stroke="#4D148C" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-        </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        <div class="fedex-logo">
-            <span class="fedex-fed">Fed</span><span class="fedex-ex">Ex</span>
+        <!-- Header Section -->
+        <header class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 mb-8 relative overflow-hidden">
+            <!-- Decorative Accent line -->
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-fedex-purple to-fedex-orange"></div>
+            
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-fedex-purple tracking-tight mb-1">Driver Operations</h1>
+                    <p class="text-slate-500 font-medium flex items-center gap-2">
+                        <i class="ph ph-map-pin text-fedex-orange text-lg"></i>
+                        Facility: 4901 Village Creek Rd
+                    </p>
+                </div>
+                <div class="bg-fedex-lightPurple px-4 py-2 rounded-lg border border-purple-100 flex items-center gap-3">
+                    <div class="h-10 w-10 bg-fedex-purple text-white rounded-full flex items-center justify-center font-bold text-lg shadow-inner">
+                        RA
+                    </div>
+                    <div>
+                        <p class="text-xs text-fedex-purple uppercase font-bold tracking-wider">Owner / Operator</p>
+                        <p class="text-sm font-semibold text-slate-800">Rob Alicea</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Controls Section -->
+        <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="relative w-full sm:w-96">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="ph ph-magnifying-glass text-slate-400 text-lg"></i>
+                </div>
+                <input type="text" id="searchInput" onkeyup="filterTables()" placeholder="Search by name, route, or phone..." 
+                       class="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-fedex-orange focus:border-fedex-orange transition-shadow duration-200 shadow-sm sm:text-sm">
+            </div>
+            
+            <div class="flex bg-white p-1 rounded-xl shadow-sm border border-slate-200 w-full sm:w-auto">
+                <button onclick="switchTab('contacts')" id="btn-contacts" class="flex-1 sm:flex-none px-6 py-2 rounded-lg text-sm font-semibold transition-colors bg-fedex-purple text-white shadow-sm">
+                    Contact Directory
+                </button>
+                <button onclick="switchTab('uniforms')" id="btn-uniforms" class="flex-1 sm:flex-none px-6 py-2 rounded-lg text-sm font-semibold transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+                    Uniform Roster
+                </button>
+            </div>
         </div>
-        
-        <h1>Driver Directory</h1>
-        <p class="subtitle">Contractor Roster & Details</p>
-        
-        <div class="quote-box">
-            <p class="quote-text">"Excellence is built in the miles no one sees. Thank you for being the quiet engine that keeps the world moving."</p>
+
+        <!-- Contacts Table View -->
+        <div id="view-contacts" class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-opacity duration-300">
+            <div class="px-6 py-4 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+                <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="ph ph-address-book text-fedex-purple text-xl"></i> Contact Directory
+                </h2>
+                <span class="bg-slate-200 text-slate-700 py-1 px-3 rounded-full text-xs font-semibold" id="contact-count">14 Drivers</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-slate-200" id="contactsTable">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Driver Name</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Route</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Phone Number</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Email Address</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-slate-200">
+                        <!-- Data Rows -->
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Antonio J.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">135</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">314-465-1499</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Tonyejackson04@gmail.com" class="text-fedex-purple hover:underline">Tonyejackson04@gmail.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Cayton M.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">127</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">817-521-4570</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Cryptocayton@gmail.com" class="text-fedex-purple hover:underline">Cryptocayton@gmail.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Datavious S.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">Bulk</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">682-287-7169</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:dstrib99@gmail.com" class="text-fedex-purple hover:underline">dstrib99@gmail.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Davion O.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">817-718-0259</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Oliverdavion@me.com" class="text-fedex-purple hover:underline">Oliverdavion@me.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Elvis G.R.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">155</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">210-897-1929</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Elvisguanipa529@gmail.com" class="text-fedex-purple hover:underline">Elvisguanipa529@gmail.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Jamal S.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">123</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">347-527-0069</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Malinvestments27@gmail.com" class="text-fedex-purple hover:underline">Malinvestments27@gmail.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Jesus P.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">139</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">817-875-0747</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Pasos_j@yahoo.com" class="text-fedex-purple hover:underline">Pasos_j@yahoo.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Jose G.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">130</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">682-234-1522</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Garcia_turco_jose@yahoo.com" class="text-fedex-purple hover:underline">Garcia_turco_jose@yahoo.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Joshua B.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">662-435-4826</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:jcboyd97@gmail.com" class="text-fedex-purple hover:underline">jcboyd97@gmail.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Kyaire S.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">856-454-6248</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Kyaire333@icloud.com" class="text-fedex-purple hover:underline">Kyaire333@icloud.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Mark F.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">126</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">817-449-4466</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:markanttony92@gmail.com" class="text-fedex-purple hover:underline">markanttony92@gmail.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Noel R.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">682-552-9523</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Noe.r2003@yahoo.com" class="text-fedex-purple hover:underline">Noe.r2003@yahoo.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Quinton J.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Hosp.</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">817-730-8910</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:yungactionjack@gmail.com" class="text-fedex-purple hover:underline">yungactionjack@gmail.com</a></td>
+                        </tr>
+                        <tr class="hover:bg-fedex-lightPurple transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Ryan H.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">682-772-0589</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><a href="mailto:Wurker.man.247@gmail.com" class="text-fedex-purple hover:underline">Wurker.man.247@gmail.com</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Empty State for Search -->
+            <div id="no-contacts" class="hidden py-8 text-center text-slate-500">
+                <i class="ph ph-user-minus text-4xl mb-2 text-slate-300"></i>
+                <p>No drivers found matching your search.</p>
+            </div>
         </div>
+
+        <!-- Uniforms Table View (Hidden by default) -->
+        <div id="view-uniforms" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-opacity duration-300">
+            <div class="px-6 py-4 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+                <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="ph ph-t-shirt text-fedex-purple text-xl"></i> Uniform Sizes Roster
+                </h2>
+                <button onclick="window.print()" class="text-slate-500 hover:text-fedex-orange transition-colors" title="Print Uniform Roster">
+                    <i class="ph ph-printer text-xl"></i>
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-slate-200" id="uniformsTable">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Driver Name</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Route</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Shirt Size</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Pants Size</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Vest Size</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-slate-200">
+                        <!-- Data Rows -->
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Antonio J.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">135</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">S</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">32</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Cayton M.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">127</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">L</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">36</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">L</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors bg-amber-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Datavious S.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">Bulk</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-amber-600 italic">Pending</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-amber-600 italic">Pending</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-amber-600 italic">Pending</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Davion O.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">34</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Elvis G.R.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">155</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-400">N/A</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Jamal S.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">123</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">L</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">36</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-400">N/A</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Jesus P.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">139</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">34</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Jose G.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">130</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">L</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">38</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">XL</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Joshua B.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">XL</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">38</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">2XL</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Kyaire S.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">S / M (Long)</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">28-29</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Mark F.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">126</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">L</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">36</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">L</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Noel R.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">XL</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">38</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">XL</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Quinton J.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Hosp.</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">29x32</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-400">N/A</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-900">Ryan H.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">TBD</span></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">30</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-bold">M</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Empty State for Search -->
+            <div id="no-uniforms" class="hidden py-8 text-center text-slate-500">
+                <i class="ph ph-user-minus text-4xl mb-2 text-slate-300"></i>
+                <p>No drivers found matching your search.</p>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Sorted Alphabetically -->
-    <div class="links-container">
-        
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Joshua Boyd</span>
-                <span class="driver-route">Route 151</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:6624354826" class="action-btn">📞 Call</a>
-                <a href="mailto:jcboyd97@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt XL | Pants 38 | Vest 2XL<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
+    <script>
+        // Store current tab state
+        let currentTab = 'contacts';
 
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Mark Francis</span>
-                <span class="driver-route">Route 126</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:8174494466" class="action-btn">📞 Call</a>
-                <a href="mailto:markanttony92@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt L | Pants 36 | Vest L<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
+        // Function to switch between Contact and Uniform tabs
+        function switchTab(tabId) {
+            currentTab = tabId;
+            
+            const btnContacts = document.getElementById('btn-contacts');
+            const btnUniforms = document.getElementById('btn-uniforms');
+            const viewContacts = document.getElementById('view-contacts');
+            const viewUniforms = document.getElementById('view-uniforms');
 
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Jose Garcia</span>
-                <span class="driver-route">Route 130</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:6822341522" class="action-btn">📞 Call</a>
-                <a href="mailto:Garcia_turco_jose@yahoo.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt L | Pants 38 | Vest XL<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
+            if (tabId === 'contacts') {
+                // Style buttons
+                btnContacts.className = "flex-1 sm:flex-none px-6 py-2 rounded-lg text-sm font-semibold transition-colors bg-fedex-purple text-white shadow-sm";
+                btnUniforms.className = "flex-1 sm:flex-none px-6 py-2 rounded-lg text-sm font-semibold transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100";
+                
+                // Toggle Views
+                viewContacts.classList.remove('hidden');
+                viewUniforms.classList.add('hidden');
+            } else {
+                // Style buttons
+                btnUniforms.className = "flex-1 sm:flex-none px-6 py-2 rounded-lg text-sm font-semibold transition-colors bg-fedex-purple text-white shadow-sm";
+                btnContacts.className = "flex-1 sm:flex-none px-6 py-2 rounded-lg text-sm font-semibold transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100";
+                
+                // Toggle Views
+                viewUniforms.classList.remove('hidden');
+                viewContacts.classList.add('hidden');
+            }
+            
+            // Re-apply filter when switching tabs
+            filterTables();
+        }
 
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Elvis Guanipa Rangel</span>
-                <span class="driver-route">Route 155</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:2108971929" class="action-btn">📞 Call</a>
-                <a href="mailto:Elvisguanipa529@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt M | Vest M<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
+        // Function to filter tables based on search input
+        function filterTables() {
+            const input = document.getElementById("searchInput");
+            const filter = input.value.toUpperCase();
+            
+            // Filter Contacts Table
+            filterSpecificTable("contactsTable", filter, "no-contacts", "contact-count");
+            
+            // Filter Uniforms Table
+            filterSpecificTable("uniformsTable", filter, "no-uniforms", null);
+        }
 
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Ryan Huffaker</span>
-                <span class="driver-route">Route 155</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:6827720589" class="action-btn">📞 Call</a>
-                <a href="mailto:Wurker.man.247@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt M | Pants 30 | Vest M<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
+        function filterSpecificTable(tableId, filterText, emptyStateId, countId) {
+            const table = document.getElementById(tableId);
+            const tr = table.getElementsByTagName("tr");
+            let visibleCount = 0;
 
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Antonio Jackson</span>
-                <span class="driver-route">Route 135</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:3144651499" class="action-btn">📞 Call</a>
-                <a href="mailto:Tonyejackson04@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt S | Pants 32 | Vest M<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
-
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Kymighia Jackson</span>
-                <span class="driver-route">Driver</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:2144699446" class="action-btn">📞 Call</a>
-                <a href="mailto:kymighiajackson18@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt M | Pants 36 | Vest M<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
-        
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Quinton Jackson</span>
-                <span class="driver-route">Driver</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:8177308910" class="action-btn">📞 Call</a>
-                <a href="mailto:yungactionjack@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt M | Pants 29x32<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
-
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Cayton McDonald</span>
-                <span class="driver-route">Route 127</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:8175214570" class="action-btn">📞 Call</a>
-                <a href="mailto:Cryptocayton@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt L | Pants 36 | Vest L<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
-        
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Davion Oliver</span>
-                <span class="driver-route">Driver</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:8177180259" class="action-btn">📞 Call</a>
-                <a href="mailto:Oliverdavion@me.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt M | Pants 34 | Vest M<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
-
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Jesus Pasos</span>
-                <span class="driver-route">Route 139</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:8178750747" class="action-btn">📞 Call</a>
-                <a href="mailto:Pasos_j@yahoo.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt M | Pants 34 | Vest M<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
-
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Noe Rosales</span>
-                <span class="driver-route">Route 154</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:6825529523" class="action-btn">📞 Call</a>
-                <a href="mailto:Noe.r2003@yahoo.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt XL | Pants 38 | Vest XL<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
-
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Jamal Sealy</span>
-                <span class="driver-route">Route 123</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:3475270069" class="action-btn">📞 Call</a>
-                <a href="mailto:Malinvestments27@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Shirt L | Pants 36<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
-
-        <div class="driver-card">
-            <div class="driver-header">
-                <span class="driver-name">Datavious Striblen</span>
-                <span class="driver-route">Bulk Route</span>
-            </div>
-            <div class="driver-actions">
-                <a href="tel:6822877169" class="action-btn">📞 Call</a>
-                <a href="mailto:dstrib99@gmail.com" class="action-btn">✉️ Email</a>
-            </div>
-            <p class="driver-notes">
-                <strong>Uniform:</strong> Pending<br>
-                <strong>Notes:</strong> Enter description or schedule here...
-            </p>
-        </div>
-
-    </div>
-
-    <footer>
-        <svg class="texas-flag" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
-            <rect width="30" height="10" fill="#ffffff"/>
-            <rect y="10" width="30" height="10" fill="#bf0a30"/>
-            <rect width="10" height="20" fill="#002868"/>
-            <path d="M5 6.5 L6.1 9.6 L9.5 9.6 L6.7 11.5 L7.8 14.6 L5 12.6 L2.2 14.6 L3.3 11.5 L0.5 9.6 L3.9 9.6 Z" fill="#ffffff"/>
-        </svg>
-        <div class="facility-address">
-            <strong>FedEx Ground</strong><br>
-            4901 Village Creek Rd<br>
-            Fort Worth, TX 76119
-        </div>
-    </footer>
-
+            // Loop through all table rows, hide those who don't match the query
+            for (let i = 1; i < tr.length; i++) { // Start at 1 to skip header row
+                let rowVisible = false;
+                const tds = tr[i].getElementsByTagName("td");
+                
+                // Check every cell in the row
+                for (let j = 0; j < tds.length; j++) {
+                    if (tds[j]) {
+                        const txtValue = tds[j].textContent || tds[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filterText) > -1) {
+                            rowVisible = true;
+                            break;
+                        }
+                    }       
+                }
+                
+                if (rowVisible) {
+                    tr[i].style.display = "";
+                    visibleCount++;
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+            
+            // Show/Hide empty state message
+            const emptyState = document.getElementById(emptyStateId);
+            const tableContainer = table.parentElement;
+            
+            if (visibleCount === 0) {
+                tableContainer.style.display = "none";
+                emptyState.classList.remove('hidden');
+            } else {
+                tableContainer.style.display = "";
+                emptyState.classList.add('hidden');
+            }
+            
+            // Update counter if applicable
+            if (countId) {
+                document.getElementById(countId).innerText = `${visibleCount} Driver${visibleCount !== 1 ? 's' : ''}`;
+            }
+        }
+    </script>
 </body>
 </html>
