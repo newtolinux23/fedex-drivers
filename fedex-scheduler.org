@@ -1,0 +1,169 @@
+#+OPTIONS: toc:nil title:nil
+#+LATEX_CLASS: article
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{letterpaper, margin=1in}
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \definecolor{fedexpurple}{HTML}{4D148C}
+#+LATEX_HEADER: \definecolor{fedexorange}{HTML}{FF6600}
+#+LATEX_HEADER: \usepackage{sectsty}
+#+LATEX_HEADER: \sectionfont{\color{fedexpurple}}
+#+LATEX_HEADER: \hypersetup{colorlinks=true, linkcolor=fedexpurple, urlcolor=fedexorange}
+
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \lhead{\color{fedexpurple}\textbf{Fleet Operations \& Scheduling Manual}}
+#+LATEX_HEADER: \rhead{\color{fedexorange}Facility: 4901 Village Creek Rd}
+#+LATEX_HEADER: \cfoot{\thepage}
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt}
+#+LATEX_HEADER: \renewcommand{\footrulewidth}{0.4pt}
+#+LATEX_HEADER: \renewcommand{\headrule}{\hbox to\headwidth{\color{fedexpurple}\leaders\hrule height \headrulewidth\hfill}}
+
+#+BEGIN_EXPORT latex
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    {\Huge \color{fedexpurple} \textbf{Fleet Operations \& Scheduling Manual}\par}
+    \vspace{1.5cm}
+    {\huge \color{fedexorange} \textbf{Facility: 4901 Village Creek Rd}\par}
+    \vspace{3cm}
+    {\Large \textbf{Prepared For: Executive Review}\par}
+    \vspace{0.75cm}
+    {\Large \textbf{Route Manager: Rob Alicea}\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+#+END_EXPORT
+
+* Contact Directory
+
+#+ATTR_LATEX: :environment tabular :booktabs t :align l l l l
+| Driver Name  | Route | Phone        | Email                       |
+|--------------+-------+--------------+-----------------------------|
+| Antonio J.   |   135 | 314-465-1499 | Tonyejackson04@gmail.com    |
+| Cayton M.    |   127 | 817-521-4570 | Cryptocayton@gmail.com      |
+| Datavious S. |   234 | 682-287-7169 | dstrib99@gmail.com          |
+| Davion O.    |   146 | 817-718-0259 | Oliverdavion@me.com         |
+| Elvis G.R.   |   155 | 210-897-1929 | Elvisguanipa529@gmail.com   |
+| Jamal S.     |   123 | 347-527-0069 | Malinvestments27@gmail.com  |
+| Jesus P.     |   139 | 817-875-0747 | Pasos_j@yahoo.com           |
+| Jose G.      |   130 | 682-234-1522 | Garcia_turco_jose@yahoo.com |
+| Joshua B.    |   TBD | 662-435-4826 | jcboyd97@gmail.com          |
+| Kyaire S.    |   TBD | 856-454-6248 | Kyaire333@icloud.com        |
+| Mark F.      |   126 | 817-449-4466 | markanttony92@gmail.com     |
+| Noel R.      |   154 | 682-552-9523 | Noe.r2003@yahoo.com         |
+| Quinton J.   | Hosp. | 817-730-8910 | yungactionjack@gmail.com    |
+| Ryan H.      |   138 | 682-772-0589 | Wurker.man.247@gmail.com    |
+
+\vspace{3em}
+
+* Uniform Inventory & Sizes
+
+#+ATTR_LATEX: :environment tabular :booktabs t :align l l l l l
+| Driver Name  | Route | Shirt        | Pants    | Vest    |
+|--------------+-------+--------------+----------+---------|
+| Antonio J.   |   135 | S            | 32       | M       |
+| Cayton M.    |   127 | L            | 36       | L       |
+| Datavious S. |   234 | Pending      | Pending  | Pending |
+| Davion O.    |   146 | M            | 34       | M       |
+| Elvis G.R.   |   155 | M            | N/A      | M       |
+| Jamal S.     |   123 | L            | 36       | N/A     |
+| Jesus P.     |   139 | M            | 34       | M       |
+| Jose G.      |   130 | XL           | 38       | XL      |
+| Joshua B.    |   TBD | 2XL          | 38       | 2XL     |
+| Kyaire S.    |   TBD | S / M (Long) | 28 or 29 | M       |
+| Mark F.      |   126 | L            | 36       | L       |
+| Noel R.      |   154 | XL           | 38       | XL      |
+| Quinton J.   | Hosp. | M            | 29x32    | N/A     |
+| Ryan H.      |   138 | M            | 30       | M       |
+
+\newpage
+
+* Strategic Operations & Dynamic Scheduling
+
+This operational blueprint is engineered to maximize route efficiency, protect driver retention through fatigue management, and provide a highly adaptive response to daily logistical challenges. By blending fixed-route stability with strategic floater deployment, we maintain a resilient, dynamically scalable fleet.
+
+** 1. Baseline Route Stability
+The foundation of our dispatch strategy relies on anchoring the majority of our workforce to set routes. By guaranteeing drivers the same geographical territory every day, we promote route mastery, reduce navigation inefficiencies, and build essential delivery consistency with high-volume business customers.
+
+** 2. The "Floater" Advantage (Dynamic Load Balancing)
+A critical differentiator in this schedule is our designated "Floater" unit, spearheaded by fully cross-trained drivers (Kyaire and Cayton). Their flexibility serves as our primary operational shock-absorber, allowing the schedule to become fully dynamic rather than rigid:
+- **Absorbing Call-Outs:** In the event of a sudden illness or emergency, floaters can be immediately hot-swapped into any vacant route without disrupting the wider grid or forcing multi-route splits.
+- **Volume Surges:** When facility volume unexpectedly spikes, floaters can be dynamically dispatched mid-morning to assist heavy trucks, perform package sweeps, or split overburdened routes to ensure zero late deliveries.
+
+** 3. Weekend Volume Compression
+Saturday and Sunday operations historically experience lighter, highly dispersed package volume. This 3-week matrix capitalizes on this variance by resting six of our fixed-route drivers simultaneously over the weekend. The remaining routes are systematically consolidated and dispatched to a rotating skeleton crew. This lean approach drastically reduces unnecessary payroll bloat while guaranteeing 100% network service overlap.
+
+** 4. Rotational Equity & Fatigue Management
+To combat driver burnout—a leading cause of fleet turnover—off-days for the weekend crews (Antonio, Noel, Elvis, Joshua) are systematically rotated. This staggered 3-week matrix ensures an equitable distribution of downtime, granting our rotational personnel access to standard weekend days off while strictly preserving our 7-day operational mandate.
+
+\newpage
+
+* 3-Week Fleet Schedule
+
+** Week 1
+#+ATTR_LATEX: :environment tabular :booktabs t :align l c c c c c c c
+| Driver       | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+|--------------+-----+-----+-----+-----+-----+-----+-----|
+| Jose G.      | W   | W   | W   | W   | W   | OFF | OFF |
+| Jesus P.     | W   | W   | W   | W   | W   | OFF | OFF |
+| Quinton J.   | W   | W   | W   | W   | W   | OFF | OFF |
+| Ryan H.      | W   | W   | W   | W   | W   | OFF | OFF |
+| Datavious S. | W   | W   | W   | W   | W   | OFF | OFF |
+| Davion O.    | W   | W   | W   | W   | W   | OFF | OFF |
+| Mark F.      | W   | W   | OFF | W   | W   | OFF | W   |
+| Jamal S.     | W   | W   | W   | W   | W   | OFF | W   |
+| Antonio J.   | OFF | W   | W   | W   | W   | W   | W   |
+| Cayton M.    | W   | W   | W   | W   | W   | OFF | W   |
+| Noel R.      | W   | W   | W   | W   | W   | W   | OFF |
+| Elvis G.R.   | W   | W   | W   | W   | W   | W   | OFF |
+| Joshua B.    | OFF | OFF | W   | W   | W   | W   | W   |
+| Kyaire S.    | W   | W   | W   | OFF | OFF | W   | W   |
+
+\vspace{1em}
+
+** Week 2
+#+ATTR_LATEX: :environment tabular :booktabs t :align l c c c c c c c
+| Driver       | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+|--------------+-----+-----+-----+-----+-----+-----+-----|
+| Jose G.      | W   | W   | W   | W   | W   | OFF | OFF |
+| Jesus P.     | W   | W   | W   | W   | W   | OFF | OFF |
+| Quinton J.   | W   | W   | W   | W   | W   | OFF | OFF |
+| Ryan H.      | W   | W   | W   | W   | W   | OFF | OFF |
+| Datavious S. | W   | W   | W   | W   | W   | OFF | OFF |
+| Davion O.    | W   | W   | W   | W   | W   | OFF | OFF |
+| Mark F.      | W   | W   | OFF | W   | W   | OFF | W   |
+| Jamal S.     | W   | W   | W   | W   | W   | OFF | W   |
+| Antonio J.   | OFF | W   | W   | W   | W   | W   | W   |
+| Cayton M.    | W   | W   | W   | W   | W   | W   | OFF |
+| Noel R.      | W   | W   | W   | W   | W   | W   | OFF |
+| Elvis G.R.   | W   | OFF | W   | W   | W   | W   | W   |
+| Joshua B.    | W   | W   | OFF | OFF | W   | W   | W   |
+| Kyaire S.    | OFF | OFF | W   | W   | W   | W   | W   |
+
+\vspace{1em}
+
+** Week 3
+#+ATTR_LATEX: :environment tabular :booktabs t :align l c c c c c c c
+| Driver       | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+|--------------+-----+-----+-----+-----+-----+-----+-----|
+| Jose G.      | W   | W   | W   | W   | W   | OFF | OFF |
+| Jesus P.     | W   | W   | W   | W   | W   | OFF | OFF |
+| Quinton J.   | W   | W   | W   | W   | W   | OFF | OFF |
+| Ryan H.      | W   | W   | W   | W   | W   | OFF | OFF |
+| Datavious S. | W   | W   | W   | W   | W   | OFF | OFF |
+| Davion O.    | W   | W   | W   | W   | W   | OFF | OFF |
+| Mark F.      | W   | W   | OFF | W   | W   | OFF | W   |
+| Jamal S.     | W   | W   | W   | W   | W   | OFF | W   |
+| Antonio J.   | OFF | W   | W   | W   | W   | W   | W   |
+| Cayton M.    | W   | W   | W   | W   | W   | OFF | W   |
+| Noel R.      | W   | W   | W   | W   | W   | W   | OFF |
+| Elvis G.R.   | W   | W   | W   | W   | W   | W   | OFF |
+| Joshua B.    | W   | OFF | OFF | W   | W   | W   | W   |
+| Kyaire S.    | W   | W   | W   | OFF | OFF | W   | W   |

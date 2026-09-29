@@ -1,0 +1,316 @@
+% Created 2026-09-27 Sun 06:56
+% Intended LaTeX compiler: pdflatex
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usemintedstyle{manni}
+\usepackage{pdfpages}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[top=1.4in, left=0.5in, right=0.5in, bottom=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{tabularray}
+\usepackage{xcolor}
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+citecolor=green,
+pdfborder={0 0 0}
+}
+\usepackage[most]{tcolorbox}
+\author{Rob Alicea}
+\date{\today}
+\title{Driver Operations \& Scheduling Manual\\\medskip
+\large Facility: 4901 Village Creek Rd}
+\hypersetup{
+ pdfauthor={Rob Alicea},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={English}}
+\begin{document}
+
+\% \#+LATEX: \includepdf[pages=1,fitpaper]{/path/to/fedex-cover.pdf}
+% \fancyfoot[C]{\setlength{\unitlength}{1in}\begin{picture}(5,0)\put(-1.8,-0.5){\includegraphics[width=8.8in,height=1.3in]{logo-1}}\end{picture}}
+% \fancyhead[C]{\setlength{\unitlength}{1in}\begin{picture}(5,0)\put(-1.9,-0.5){\includegraphics[width=8.9in,height=1.3in]{logo-2}}\end{picture}}
+\fancyhead[R]{\thepage}
+\pagenumbering{gobble}
+\begin{document}
+\newpage
+\vspace*{-0.5cm}
+\tcbuselibrary{}
+\newtcolorbox{bluebox}[1][]{
+colback=blue!5!white,
+colframe=blue!75!black,
+fonttitle=\bfseries,
+coltitle=black,
+enhanced,
+attach boxed title to top center={yshift=-2mm},
+title=#1,
+boxed title style={colback=blue!50!white}
+}
+\newtcolorbox{greenbox}[1][]{
+colback=green!5!white,
+colframe=green!75!black,
+fonttitle=\bfseries,
+coltitle=black,
+enhanced,
+attach boxed title to top center={yshift=-2mm},
+title=#1,
+boxed title style={colback=green!50!white}
+}
+\newtcolorbox{redbox}[1][]{
+colback=red!5!white,
+colframe=red!75!black,
+fonttitle=\bfseries,
+coltitle=black,
+enhanced,
+attach boxed title to top center={yshift=-2mm},
+title=#1,
+boxed title style={colback=red!50!white}
+}
+Introducción / Introduction
+Team,
+Welcome to our Driver Operations \& Scheduling Manual. We are committed to providing a safe, efficient, and driver-focused environment where everyone can thrive. As we execute our daily routes, it is essential that all team members stay informed about our schedules, rotations, and operational standards.
+\begin{quote}
+``Our drivers move the company. This schedule is designed with a `Driver-First' mentality—protecting your days off, preventing burnout, and ensuring our operations run smoothly to support you on the road.''   -- Rob Alicea
+\end{quote}
+Thank you for your hard work and dedication. Together, we can ensure that we continue to deliver excellence while maintaining a balanced and supportive work environment for everyone.
+With justice, honor, and self-discipline,
+% \includegraphics[width=0.2\textwidth]{hil_signature}
+Rob Alicea, Owner/Operator
+\textit{Driver-First Operations}
+\pagebreak
+\vspace*{-1cm}
+ Facility \& Operations Information
+\begin{bluebox}[Terminal and Volume Details]
+\begin{itemize}
+\item \textbf{Facility Location:} 4901 Village Creek Rd, Fort Worth, TX 76119
+\item \textbf{Servicing Zip Codes:} 76104 and 76119
+\item \textbf{Standard Weekday Volume:} 12 to 13 Routes
+\item \textbf{Standard Weekend Volume:} 7 Routes (Saturday), 6 Routes (Sunday)
+\item \textbf{Hospital Route Special:} Requires 2 trucks for 1 driver (Quinton) Mon-Fri.
+\end{itemize}
+\end{bluebox}
+\vspace*{0.5cm}
+Driver Directory (Contact \& Uniforms)
+\begin{bluebox}[Driver Contact Information]
+\begin{table}[H]
+\centering
+\begin{tblr}{
+colspec={|X|X|X|X|},
+row{1}={font=\bfseries,c},
+hlines,
+vlines
+}
+Driver Name & Route & Phone & Email \
+Antonio J. & 135 & 314-465-1499 & Tonyejackson04@gmail.com \
+Cayton M. & 127 & 817-521-4570 & Cryptocayton@gmail.com \
+Datavious S. & Bulk & 682-287-7169 & dstrib99@gmail.com \
+Davion O. & TBD & 817-718-0259 & Oliverdavion@me.com \
+Elvis G.R. & 155 & 210-897-1929 & Elvisguanipa529@gmail.com \
+Jamal S. & 123 & 347-527-0069 & Malinvestments27@gmail.com \
+Jesus P. & 139 & 817-875-0747 & Pasos_j@yahoo.com \
+Jose G. & 130 & 682-234-1522 & Garcia_turco_jose@yahoo.com \
+Joshua B. & TBD & 662-435-4826 & jcboyd97@gmail.com \
+Karee & TBD & Pending & Pending \
+Mark F. & 126 & 817-449-4466 & markanttony92@gmail.com \
+Noel R. & TBD & 682-552-9523 & Noe.r2003@yahoo.com \
+Quinton J. & Hosp. & 817-730-8910 & yungactionjack@gmail.com \
+Ryan H. & TBD & 682-772-0589 & Wurker.man.247@gmail.com
+\end{tblr}
+\end{table}
+\end{bluebox}
+\vspace*{0.5cm}
+\begin{bluebox}[Driver Uniform Sizes]
+\begin{table}[H]
+\centering
+\begin{tblr}{
+colspec={|X|X|c|c|c|},
+row{1}={font=\bfseries,c},
+hlines,
+vlines
+}
+Driver Name & Route & Shirt & Pants & Vest \
+Antonio J. & 135 & S & 32 & M \
+Cayton M. & 127 & L & 36 & L \
+Datavious S. & Bulk & Pend & Pend & Pend \
+Davion O. & TBD & M & 34 & M \
+Elvis G.R. & 155 & M & N/A & M \
+Jamal S. & 123 & L & 36 & N/A \
+Jesus P. & 139 & M & 34 & M \
+Jose G. & 130 & L & 38 & XL \
+Joshua B. & TBD & XL & 38 & 2XL \
+Karee & TBD & Pend & Pend & Pend \
+Mark F. & 126 & L & 36 & L \
+Noel R. & TBD & XL & 38 & XL \
+Quinton J. & Hosp. & M & 29x32 & N/A \
+Ryan H. & TBD & M & 30 & M
+\end{tblr}
+\end{table}
+\end{bluebox}
+\pagebreak
+\vspace*{-1cm}
+Weekend Coverage Breakdown
+\begin{greenbox}[Saturday Team (7 Routes Every Week)]
+These drivers work EVERY Saturday to hit the 7-route target safely.
+\begin{itemize}
+\item 1. Antonio Jackson
+\item 2. Cayton McDonald
+\item 3. Elvis Guanipa Rangel
+\item 4. Noel Rosales
+\item 5. Joshua Boyd
+\item 6. Karee
+\item \textbf{7. Rob Alicea (Owner - Covering the 7th route)}
+\end{itemize}
+\end{greenbox}
+\vspace*{0.5cm}
+\begin{bluebox}[Sunday Team (6 Routes - 3 Week Rotation)]
+Sunday operates on exactly 6 routes. 5 drivers anchor the shift permanently, while the 6th spot is rotated to protect days off.
+\textbf{Permanent Sunday Anchors:}
+\begin{itemize}
+\item 1. Antonio Jackson
+\item 2. Jamal Sealy
+\item 3. Mark Francis
+\item 4. Joshua Boyd
+\item 5. Karee
+\end{itemize}
+\textbf{3-Week Sunday Rotation (The 6th Spot):}
+\begin{itemize}
+\item \textbf{Week 1:} Elvis works Sunday (Takes Friday off). Cayton & Noel are OFF.
+\item \textbf{Week 2:} Cayton works Sunday (Takes Wednesday off). Elvis & Noel are OFF.
+\item \textbf{Week 3:} Noel works Sunday (Takes Tuesday off). Elvis & Cayton are OFF.
+\end{itemize}
+\end{bluebox}
+\pagebreak
+\vspace*{-1cm}
+Weekly Operations Schedule (3-Week Rotation)
+\begin{bluebox}[Week 1 (Elvis Works Sunday)]
+\begin{table}[H]
+\centering
+\small
+\begin{tblr}{
+colspec={|l|c|c|c|c|c|c|c|},
+row{1}={font=\bfseries,c},
+hlines,
+vlines
+}
+Driver & Mon & Tue & Wed & Thu & Fri & Sat & Sun \
+Antonio & OFF & Work & Work & Work & Work & Work & Work \
+Jamal & Work & Work & Work & Work & Work & OFF & Work \
+Elvis (Rot) & Work & Work & Work & Work & OFF & Work & Work \
+Cayton (Rot) & Work & Work & Work & Work & Work & Work & OFF \
+Noel (Rot) & Work & Work & Work & Work & Work & Work & OFF \
+Mark & Work & Work & OFF & Work & Work & OFF & Work \
+Datavious & Work & Work & Work & Work & Work & OFF & OFF \
+Davion & Work & Work & Work & Work & Work & OFF & OFF \
+Jose G. & Work & Work & Work & Work & Work & OFF & OFF \
+Jesus & Work & Work & Work & Work & Work & OFF & OFF \
+Quinton & Work & Work & Work & Work & Work & OFF & OFF \
+Ryan & Work & Work & Work & Work & Work & OFF & OFF \
+Joshua & Work & OFF & Work & OFF & Work & Work & Work \
+Karee & OFF & Work & Work & Work & OFF & Work & Work \
+Rob (You) & OFF & OFF & OFF & OFF & OFF & Work & OFF
+\end{tblr}
+\end{table}
+\end{bluebox}
+\vspace*{0.5cm}
+\begin{bluebox}[Week 2 (Cayton Works Sunday)]
+\begin{table}[H]
+\centering
+\small
+\begin{tblr}{
+colspec={|l|c|c|c|c|c|c|c|},
+row{1}={font=\bfseries,c},
+hlines,
+vlines
+}
+Driver & Mon & Tue & Wed & Thu & Fri & Sat & Sun \
+Antonio & OFF & Work & Work & Work & Work & Work & Work \
+Jamal & Work & Work & Work & Work & Work & OFF & Work \
+Cayton (Rot) & Work & Work & OFF & Work & Work & Work & Work \
+Elvis (Rot) & Work & Work & Work & Work & Work & Work & OFF \
+Noel (Rot) & Work & Work & Work & Work & Work & Work & OFF \
+Mark & Work & Work & OFF & Work & Work & OFF & Work \
+Datavious & Work & Work & Work & Work & Work & OFF & OFF \
+Davion & Work & Work & Work & Work & Work & OFF & OFF \
+Jose G. & Work & Work & Work & Work & Work & OFF & OFF \
+Jesus & Work & Work & Work & Work & Work & OFF & OFF \
+Quinton & Work & Work & Work & Work & Work & OFF & OFF \
+Ryan & Work & Work & Work & Work & Work & OFF & OFF \
+Joshua & Work & OFF & Work & OFF & Work & Work & Work \
+Karee & OFF & Work & Work & Work & OFF & Work & Work \
+Rob (You) & OFF & OFF & OFF & OFF & OFF & Work & OFF
+\end{tblr}
+\end{table}
+\end{bluebox}
+\pagebreak
+\vspace*{-1cm}
+\begin{bluebox}[Week 3 (Noel Works Sunday)]
+\begin{table}[H]
+\centering
+\small
+\begin{tblr}{
+colspec={|l|c|c|c|c|c|c|c|},
+row{1}={font=\bfseries,c},
+hlines,
+vlines
+}
+Driver & Mon & Tue & Wed & Thu & Fri & Sat & Sun \
+Antonio & OFF & Work & Work & Work & Work & Work & Work \
+Jamal & Work & Work & Work & Work & Work & OFF & Work \
+Noel (Rot) & Work & OFF & Work & Work & Work & Work & Work \
+Cayton (Rot) & Work & Work & Work & Work & Work & Work & OFF \
+Elvis (Rot) & Work & Work & Work & Work & Work & Work & OFF \
+Mark & Work & Work & OFF & Work & Work & OFF & Work \
+Datavious & Work & Work & Work & Work & Work & OFF & OFF \
+Davion & Work & Work & Work & Work & Work & OFF & OFF \
+Jose G. & Work & Work & Work & Work & Work & OFF & OFF \
+Jesus & Work & Work & Work & Work & Work & OFF & OFF \
+Quinton & Work & Work & Work & Work & Work & OFF & OFF \
+Ryan & Work & Work & Work & Work & Work & OFF & OFF \
+Joshua & Work & OFF & Work & OFF & Work & Work & Work \
+Karee & OFF & Work & Work & Work & OFF & Work & Work \
+Rob (You) & OFF & OFF & OFF & OFF & OFF & Work & OFF
+\end{tblr}
+\end{table}
+\end{bluebox}
+\vspace*{0.5cm}
+Driver-First Operational Scenarios
+\begin{redbox}[Contingency & Driver Support Scenarios]
+\begin{itemize}
+\item \textbf{6-Day driver needs a weekend off:}
+\textit{Driver-First Solution:} Allow a 5-day M-F driver to pick up an extra shift at an overtime bonus rate. \textit{Impact:} Costs a premium in payroll, but builds immense loyalty and prevents burnout.
+\item \textbf{High volume spike on a route:}
+\textit{Driver-First Solution:} Dispatch a ``rescue'' using a driver who finishes early, paying a per-stop bonus. \textit{Impact:} Prevents driver exhaustion; rewards efficient drivers with extra cash.
+\item \textbf{Driver calls out sick on a weekend:}
+\textit{Driver-First Solution:} Rob (Owner) covers the route, or route volume is split across remaining drivers with bonus pay. \textit{Impact:} Service levels maintained without forcing an off-duty driver to come in.
+\item \textbf{Fatigue sets in for 3-Week Rotators:}
+\textit{Driver-First Solution:} Introduce a ``Flex Day'' once a quarter where the rotator gets a full 2-day weekend off. \textit{Impact:} Short-term staffing crunch, but lowers turnover for hard workers.
+\item \textbf{Truck breakdown mid-route:}
+\textit{Driver-First Solution:} Maintain the spare truck at the terminal. Dispatch it immediately to the driver's location. \textit{Impact:} Minimal delay for the driver; prevents them from working late into the evening.
+\end{itemize}
+\end{redbox}
+\end{document}
